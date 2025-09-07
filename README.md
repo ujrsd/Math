@@ -1,2 +1,3 @@
 # Math
-Typical math problems solved in different programming languages.
+
+This class provides different simple functions to solve simple math problems.
