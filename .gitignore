@@ -1,2 +1,7 @@
 *.exe
 *.obj
+*.pdb
+*.tmp
+
+.vscode/
+.idea/
