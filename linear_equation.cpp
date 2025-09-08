@@ -16,6 +16,7 @@ bool isValidEquation(std::string equation) {
     if(found_invalid_char == std::string::npos)
         // Check if multiple "=" signs are in the equation
         if(first_equal == last_equal)
+            // TODO check for multiple + or - signs, a bit like a syntax for equations
             return true;
         else
             // Multiple "=" signs found, invalid equation
@@ -65,6 +66,57 @@ bool isMinusFirstSymbol(std::string equation) {
     return res;
 }
 
+void printTerms(std::string equation, bool isMinusFirstSymbol) {
+    std::size_t next_plus_position = 0;
+    std::size_t next_minus_position = (isMinusFirstSymbol) ? 1 : 0; // Short Hand If Else
+    std::size_t next_position = 1;
+
+    unsigned int counter = 0;
+
+    std::string term = "";
+
+    next_plus_position = equation.find("+");
+    next_minus_position = equation.find("-", next_minus_position);
+
+    std::cout << "next_plus_position=" << next_plus_position << " - next_minus_position=" << next_minus_position << " - next_position=" << next_position << std::endl;
+
+    std::cout << std::endl;
+    while(next_plus_position != std::string::npos || next_minus_position != std::string::npos) {
+        std::cout << "equation[next_position-1]=" << equation[next_position-1] << " ; next_position-1=" << next_position-1 << std::endl;
+        term = (equation[next_position-1] == '-') ? "-" : "";
+
+        if(next_plus_position < next_minus_position) {
+            term += equation.substr(next_position, next_plus_position-next_position);
+            next_position = next_plus_position + 1;
+            next_plus_position = equation.find("+",next_position);
+        } else {
+            term += equation.substr(next_position, next_minus_position-next_position);
+            next_position = next_minus_position + 1;
+            next_minus_position = equation.find("-",next_position);
+        }
+        
+        std::cout << "Term " << counter << ": " << term << std::endl; 
+        std::cout << "next_plus_position=" << next_plus_position << " - next_minus_position=" << next_minus_position << " - next_position=" << next_position << std::endl;
+
+        counter++;
+        std::cout << std::endl;
+    }
+
+    term = (equation[next_position-1] == '-') ? "-" : "";
+    term += equation.substr(next_position, equation.length()-next_position);
+    std::cout << "Term " << counter << ": " << term << std::endl; 
+}
+
+// TODO
+int calcConstantTerms(std::string equation, bool isMinusFirstSymbol) {
+    int sum = 0;
+    std::size_t first_position = 0;
+    std::size_t second_position = 0;
+
+    return 0;
+}
+
+// TODO
 std::string simplifyEquation(std::string equation) {
     std::string res = "";
 

@@ -13,10 +13,14 @@ int main(){
         bool isOneSided = isOneSidedEquation(equation);
         std::cout << "One sided equation? ";
         if(isOneSided) {
+            bool firstPosMinus = isMinusFirstSymbol(equation);
+            unsigned int numberOfTerms = amountOfTerms(equation, firstPosMinus);
             std::cout << "Yes" << std::endl;
             std::cout << "Amount of '+' symbols in equation: " << countAmountOfSymbols(equation,"+") << std::endl;
             std::cout << "Amount of '-' symbols in equation: " << countAmountOfSymbols(equation,"-") << std::endl;
-            std::cout << "Amount of terms in equation: " << amountOfTerms(equation,isMinusFirstSymbol(equation)) << std::endl;
+            std::cout << "Amount of terms in equation: " << numberOfTerms << std::endl;
+
+            printTerms(equation, firstPosMinus);
             simplifyEquation(equation);
         }
         else

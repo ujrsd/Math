@@ -10,3 +10,5 @@ unsigned int amountOfTerms(std::string equation, bool isMinusFirstSymbol);
 bool isValidEquation(std::string equation);
 bool isOneSidedEquation(std::string equation);
 bool isMinusFirstSymbol(std::string equation);
+
+void printTerms(std::string equation, bool isMinusFirstSymbol);
